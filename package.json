@@ -1,0 +1,29 @@
+{
+  "name": "ll",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "start": "node src/app.js",
+    "predev": "npm run migrate && npm run seed",
+    "dev": "nodemon --watch src --exec 'node --require dotenv/config src/app.js'",
+    "test:lint": "eslint src/** migrations/** seeds/**",
+    "test:migrate": "npm run migrate && knex migrate:rollback",
+    "migrate": "knex migrate:latest",
+    "seed": "knex seed:run"
+  },
+  "author": "Alexey Reznikov",
+  "license": "MIT",
+  "dependencies": {
+    "knex": "0.15.2",
+    "koa": "2.6.1",
+    "koa-body": "4.0.4",
+    "koa-router": "7.4.0"
+  },
+  "devDependencies": {
+    "dotenv": "6.1.0",
+    "eslint": "5.8.0",
+    "eslint-config-airbnb-base": "13.1.0",
+    "nodemon": "1.18.5",
+    "sqlite3": "4.0.3"
+  }
+}
