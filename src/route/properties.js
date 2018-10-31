@@ -1,47 +1,50 @@
 const Router = require('koa-router');
 const knex = require('../db');
-const auth = require('../middleware/auth');
 
-const router = new Router({ prefix: '/v1/properties' });
+const router = new Router({ prefix: '/properties' });
 
-router.get('/', auth(), async (ctx) => {
-  const content = await knex('properties')
-    .select('uuid', 'address')
+router.get('/', async (ctx) => {
+  const { user } = ctx.state;
+
+  const properties = await knex('properties')
+    .select('id', 'address', 'created_at', 'updated_at')
+    .where({ user_id: user.id })
     .orderBy('created_at');
 
   ctx.body = {
     status: 'success',
-    content,
+    content: properties,
   };
 
   return ctx;
 });
 
-router.get('/:uuid', auth(), async (ctx) => {
+router.put('/', async (ctx) => {
+  ctx.throw(501);
+});
+
+router.get('/:propertyId', async (ctx) => {
+  const { user } = ctx.state;
+  const { propertyId } = ctx.params;
+
   const property = await knex('properties')
-    .where({ uuid: ctx.params.uuid })
-    .first('uuid', 'address', 'user_id');
+    .first('id', 'address', 'created_at', 'updated_at')
+    .where({ user_id: user.id, id: propertyId });
 
   if (property === undefined) {
     return ctx.throw(404);
   }
 
-  const user = property.user_id
-    ? await knex('users')
-      .where({ id: property.user_id })
-      .first('uuid', 'username', 'name')
-    : undefined;
-
   ctx.body = {
     status: 'success',
-    content: {
-      ...property,
-      user_id: undefined, // user id should not be exposed
-      user,
-    },
+    content: property,
   };
 
   return ctx;
+});
+
+router.post('/:propertyId', async (ctx) => {
+  ctx.throw(501);
 });
 
 module.exports = router;
