@@ -1,9 +1,13 @@
 const Koa = require('koa');
 const Router = require('koa-router');
+const { Model } = require('objection');
+const knex = require('./db');
 
 const { PORT = 3000 } = process.env;
 const app = new Koa();
 const router = new Router({ prefix: '/v1' });
+
+Model.knex(knex);
 
 router.use(require('./route/me').routes());
 router.use(require('./route/teapot').routes());

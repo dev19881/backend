@@ -1,13 +1,12 @@
 const Router = require('koa-router');
-const knex = require('../db');
+const PropertyModel = require('../model/PropertyModel');
 
 const router = new Router({ prefix: '/properties' });
 
 router.get('/', async (ctx) => {
   const { user } = ctx.state;
 
-  const properties = await knex('properties')
-    .select('id', 'address', 'created_at', 'updated_at')
+  const properties = await PropertyModel.query()
     .where({ user_id: user.id })
     .orderBy('created_at');
 
@@ -27,9 +26,9 @@ router.get('/:propertyId', async (ctx) => {
   const { user } = ctx.state;
   const { propertyId } = ctx.params;
 
-  const property = await knex('properties')
-    .first('id', 'address', 'created_at', 'updated_at')
-    .where({ user_id: user.id, id: propertyId });
+  const property = await PropertyModel.query()
+    .where({ user_id: user.id, id: propertyId })
+    .first();
 
   if (property === undefined) {
     return ctx.throw(404);

@@ -1,4 +1,4 @@
-const knex = require('../db');
+const UserModel = require('../model/UserModel');
 
 const headers = {
   'WWW-Authenticate': 'Basic realm="Restricted Area", charset="UTF-8"',
@@ -14,9 +14,9 @@ module.exports = () => async (ctx, next) => {
   const [, base64] = authorization.split(' ');
   const [username, password] = Buffer.from(base64, 'base64').toString().split(':');
 
-  const user = await knex('users')
+  const user = await UserModel.query()
     .where({ username, password })
-    .first('*');
+    .first();
 
   if (user === undefined) {
     return ctx.throw(401, undefined, { headers });
