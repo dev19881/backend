@@ -2,6 +2,10 @@ const { Model } = require('objection');
 const BaseModel = require('./BaseModel');
 
 class PropertyModel extends BaseModel {
+  static get tableName() {
+    return 'properties';
+  }
+
   static get jsonSchema() {
     return {
       type: 'object',
@@ -28,10 +32,6 @@ class PropertyModel extends BaseModel {
         },
       },
     };
-  }
-
-  static tableName() {
-    return 'properties';
   }
 
   $formatJson(json) {
