@@ -16,7 +16,8 @@
     "knex": "0.15.2",
     "koa": "2.6.1",
     "koa-body": "4.0.4",
-    "koa-router": "7.4.0"
+    "koa-router": "7.4.0",
+    "pg": "7.6.0"
   },
   "devDependencies": {
     "dotenv": "6.1.0",
