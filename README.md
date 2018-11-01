@@ -13,7 +13,7 @@ Proudly copy pasted from [bulyshko/up][origin]
 The source code is licensed under the [MIT License][license].
 
 
-[origin]:https://github.com/oligsei/ll
+[origin]:https://github.com/bulyshko/up
 [license]:https://raw.github.com/oligsei/ll/master/LICENSE
 [deploy.button]:https://www.herokucdn.com/deploy/button.svg
 [deploy]:https://heroku.com/deploy
