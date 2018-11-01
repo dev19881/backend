@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node src/app.js",
     "dev": "nodemon --watch src --exec 'node --require dotenv/config src/app.js'",
-    "test:lint": "eslint src/** migrations/** seeds/**",
+    "test:lint": "standard",
     "test:migrate": "npm run migrate && knex migrate:rollback",
     "migrate": "knex migrate:latest",
     "seed": "knex seed:run"
