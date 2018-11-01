@@ -1,49 +1,45 @@
-const Router = require('koa-router');
-const PropertyModel = require('../model/PropertyModel');
+const Router = require('koa-router')
+const PropertyModel = require('../model/PropertyModel')
 
-const router = new Router({ prefix: '/properties' });
+const router = new Router({ prefix: '/properties' })
 
 router.get('/', async (ctx) => {
-  const { user } = ctx.state;
+  const { user } = ctx.state
 
   const properties = await PropertyModel.query()
     .where({ user_id: user.id })
-    .orderBy('created_at');
+    .orderBy('created_at')
 
   ctx.body = {
     status: 'success',
-    content: properties,
-  };
-
-  return ctx;
-});
+    content: properties
+  }
+})
 
 router.put('/', async (ctx) => {
-  ctx.throw(501);
-});
+  ctx.throw(501)
+})
 
 router.get('/:propertyId', async (ctx) => {
-  const { user } = ctx.state;
-  const { propertyId } = ctx.params;
+  const { user } = ctx.state
+  const { propertyId } = ctx.params
 
   const property = await PropertyModel.query()
     .where({ user_id: user.id, id: propertyId })
-    .first();
+    .first()
 
   if (property === undefined) {
-    return ctx.throw(404);
+    return ctx.throw(404)
   }
 
   ctx.body = {
     status: 'success',
-    content: property,
-  };
-
-  return ctx;
-});
+    content: property
+  }
+})
 
 router.post('/:propertyId', async (ctx) => {
-  ctx.throw(501);
-});
+  ctx.throw(501)
+})
 
-module.exports = router;
+module.exports = router

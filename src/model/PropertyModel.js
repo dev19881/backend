@@ -1,26 +1,25 @@
-const { Model } = require('objection');
-const BaseModel = require('./BaseModel');
+const { Model } = require('objection')
+const BaseModel = require('./BaseModel')
 
 class PropertyModel extends BaseModel {
-  static get tableName() {
-    return 'properties';
+  static get tableName () {
+    return 'properties'
   }
 
-  static get jsonSchema() {
+  static get jsonSchema () {
     return {
       type: 'object',
       properties: {
         id: { type: 'integer' },
         address: { type: 'string' },
         created_at: { type: 'date-time' },
-        updated_at: { type: 'date-time' },
-      },
-    };
+        updated_at: { type: 'date-time' }
+      }
+    }
   }
 
-  static get relationMappings() {
-    // eslint-disable-next-line global-require
-    const UserModel = require('./UserModel');
+  static get relationMappings () {
+    const UserModel = require('./UserModel')
 
     return {
       user: {
@@ -28,18 +27,18 @@ class PropertyModel extends BaseModel {
         modelClass: UserModel,
         join: {
           from: 'properties.user_id',
-          to: 'users.id',
-        },
-      },
-    };
+          to: 'users.id'
+        }
+      }
+    }
   }
 
-  $formatJson(json) {
+  $formatJson (json) {
     return {
       ...super.$formatJson(json),
-      user_id: undefined,
-    };
+      user_id: undefined
+    }
   }
 }
 
-module.exports = PropertyModel;
+module.exports = PropertyModel
