@@ -1,9 +1,13 @@
 const Koa = require('koa')
 const Router = require('koa-router')
+const knex = require('./db')
+const { Model } = require('objection')
 
 const { PORT = 3000 } = process.env
 const app = new Koa()
 const router = new Router({ prefix: '/v1' })
+
+Model.knex(knex)
 
 app.use(require('./middleware/ssl'))
 app.use(require('./middleware/error'))
