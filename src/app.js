@@ -10,11 +10,13 @@ const router = new Router({ prefix: '/v1' })
 Model.knex(knex)
 
 app.use(require('./middleware/ssl'))
-app.use(require('./middleware/error'))
+app.use(require('./middleware/error')) // then we handle other errors
 app.use(require('./route/index').routes()) // root redirect
 
 // eslint-disable-next-line no-console
 app.on('error', error => console.error(error.stack))
+
+router.use(require('./route/auth').routes())
 
 router.use(require('./route/me').routes())
 router.use(require('./route/teapot').routes())

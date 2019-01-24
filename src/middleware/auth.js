@@ -1,4 +1,4 @@
-const UserModel = require('../model/UserModel')
+const UserModel = require('../model/user.model')
 
 const headers = {
   'WWW-Authenticate': 'Basic realm="Restricted Area", charset="UTF-8"'
