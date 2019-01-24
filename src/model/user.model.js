@@ -1,5 +1,5 @@
 const { Model } = require('objection')
-const BaseUserModel = require('./base-user.model')
+const { BaseUserModel } = require('./base-user.model')
 const schema = require('../schema/user')
 
 class UserModel extends BaseUserModel {
@@ -23,4 +23,4 @@ class UserModel extends BaseUserModel {
   }
 }
 
-module.exports = UserModel
+module.exports.UserModel = UserModel

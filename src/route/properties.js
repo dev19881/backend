@@ -1,5 +1,5 @@
 const Router = require('koa-router')
-const PropertyModel = require('../model/property.model')
+const { PropertyModel } = require('../model/property.model')
 
 const router = new Router({ prefix: '/properties' })
 
@@ -42,4 +42,4 @@ router.post('/:propertyId', async (ctx) => {
   ctx.throw(501)
 })
 
-module.exports = router
+module.exports.properties = router

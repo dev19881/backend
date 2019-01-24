@@ -1,4 +1,4 @@
-const BaseUserModel = require('./base-user.model')
+const { BaseUserModel } = require('./base-user.model')
 const schema = require('../schema/create-user')
 
 class CreateUserModel extends BaseUserModel {
@@ -14,4 +14,4 @@ class CreateUserModel extends BaseUserModel {
   }
 }
 
-module.exports = CreateUserModel
+module.exports.CreateUserModel = CreateUserModel

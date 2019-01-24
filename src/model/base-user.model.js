@@ -1,4 +1,4 @@
-const BaseModel = require('./base.model')
+const { BaseModel } = require('./base.model')
 
 class BaseUserModel extends BaseModel {
   static get tableName () {
@@ -20,4 +20,4 @@ class BaseUserModel extends BaseModel {
   }
 }
 
-module.exports = BaseUserModel
+module.exports.BaseUserModel = BaseUserModel

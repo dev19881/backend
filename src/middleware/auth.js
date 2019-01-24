@@ -1,10 +1,10 @@
-const UserModel = require('../model/user.model')
+const { UserModel } = require('../model/user.model')
 
 const headers = {
   'WWW-Authenticate': 'Basic realm="Restricted Area", charset="UTF-8"'
 }
 
-module.exports = () => async (ctx, next) => {
+module.exports.auth = () => async (ctx, next) => {
   const { authorization } = ctx.headers
 
   if (authorization === undefined) {

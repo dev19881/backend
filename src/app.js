@@ -1,26 +1,35 @@
 const Koa = require('koa')
 const Router = require('koa-router')
-const knex = require('./db')
+const { knex } = require('./db')
 const { Model } = require('objection')
+
+const { ssl } = require('./middleware/ssl')
+const { error } = require('./middleware/error')
+
+const { index } = require('./route/index')
+const { auth } = require('./route/auth')
+const { me } = require('./route/me')
+const { teapot } = require('./route/teapot')
 
 const { PORT = 3000 } = process.env
 const app = new Koa()
-const router = new Router({ prefix: '/v1' })
 
 Model.knex(knex)
 
-app.use(require('./middleware/ssl'))
-app.use(require('./middleware/error')) // then we handle other errors
-app.use(require('./route/index').routes()) // root redirect
+app.use(ssl)
+app.use(error) // then we handle other errors
 
 // eslint-disable-next-line no-console
 app.on('error', error => console.error(error.stack))
 
-router.use(require('./route/auth').routes())
+const router = new Router({ prefix: '/v1' })
 
-router.use(require('./route/me').routes())
-router.use(require('./route/teapot').routes())
+router.use(auth.routes())
 
+router.use(me.routes())
+router.use(teapot.routes())
+
+app.use(index.routes()) // root redirect
 app.use(router.routes())
 
 module.exports = app.listen(PORT)

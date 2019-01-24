@@ -1,5 +1,5 @@
 const { Model } = require('objection')
-const BasePropertyModel = require('./base-property.model')
+const { BasePropertyModel } = require('./base-property.model')
 const schema = require('../schema/read-property')
 
 class PropertyModel extends BasePropertyModel {
@@ -23,4 +23,4 @@ class PropertyModel extends BasePropertyModel {
   }
 }
 
-module.exports = PropertyModel
+module.exports.PropertyModel = PropertyModel

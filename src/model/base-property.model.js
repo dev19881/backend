@@ -1,4 +1,4 @@
-const BaseModel = require('./base.model')
+const { BaseModel } = require('./base.model')
 const schema = require('../schema/read-property')
 
 class BasePropertyModel extends BaseModel {
@@ -18,4 +18,4 @@ class BasePropertyModel extends BaseModel {
   }
 }
 
-module.exports = BasePropertyModel
+module.exports.BasePropertyModel = BasePropertyModel

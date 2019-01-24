@@ -1,5 +1,6 @@
 const Router = require('koa-router')
-const auth = require('../middleware/auth')
+const { auth } = require('../middleware/auth')
+const { properties } = require('./properties')
 
 const router = new Router({ prefix: '/me' })
 
@@ -21,6 +22,7 @@ router.post('/', async (ctx) => {
   ctx.throw(501)
 })
 
-router.use(require('./properties').routes())
+// put properties under user
+router.use(properties.routes())
 
-module.exports = router
+module.exports.me = router

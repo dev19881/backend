@@ -1,4 +1,4 @@
-module.exports = (ctx, next) => {
+module.exports.ssl = (ctx, next) => {
   const secure = ctx.secure || ctx.headers['x-forwarded-proto'] === 'https'
 
   if (secure || ctx.app.env === 'development') {

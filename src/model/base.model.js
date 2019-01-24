@@ -27,4 +27,4 @@ class BaseModel extends DbErrors(Model) {
   }
 }
 
-module.exports = BaseModel
+module.exports.BaseModel = BaseModel

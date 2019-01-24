@@ -4,4 +4,4 @@ const router = new Router({ prefix: '/teapot' })
 
 router.get('/', ctx => ctx.throw(418, undefined, { expose: false }))
 
-module.exports = router
+module.exports.teapot = router

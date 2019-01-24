@@ -1,8 +1,8 @@
 const Router = require('koa-router')
 const body = require('koa-body')
 const { ValidationError } = require('objection')
-const auth = require('../middleware/auth')
-const CreateUserModel = require('../model/create-user.model')
+const { auth } = require('../middleware/auth')
+const { CreateUserModel } = require('../model/create-user.model')
 
 const router = new Router()
 
@@ -38,4 +38,4 @@ router.post('/register', body(), async (ctx) => {
   }
 })
 
-module.exports = router
+module.exports.auth = router

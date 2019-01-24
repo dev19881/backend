@@ -1,6 +1,6 @@
 const { STATUS_CODES } = require('http')
 
-module.exports = async (ctx, next) => {
+module.exports.error = async (ctx, next) => {
   try {
     await next()
 
