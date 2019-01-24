@@ -8,6 +8,13 @@ module.exports = {
     },
     useNullAsDefault: true
   },
+  test: {
+    client: 'postgres',
+    connection: {
+      user: 'test',
+      database: 'test'
+    }
+  },
   production: {
     client: 'pg',
     connection: DATABASE_URL
