@@ -14,9 +14,9 @@ const { teapot } = require('./route/teapot')
 const { PORT = 3000 } = process.env
 const app = new Koa()
 
-const cors = require('@koa/cors');
+//const cors = require('@koa/cors');
 
-app.use(cors());
+//app.use(cors());
 
 Model.knex(knex)
 
