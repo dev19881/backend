@@ -1,9 +1,7 @@
 const { UserModel } = require('../model/user.model')
 
 const headers = {
-  'WWW-Authenticate': 'Basic realm="Restricted Area", charset="UTF-8"',
-  'Access-Control-Allow-Origin': 'http://127.0.0.1:5500',
-  'Access-Control-Allow-Headers', 'X-Requested-With'
+  'WWW-Authenticate': 'Basic realm="Restricted Area", charset="UTF-8"'
 }
 
 module.exports.auth = () => async (ctx, next) => {
